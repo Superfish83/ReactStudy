@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    function App(){
+        const [value, setValue] = React.useState(0);
+        const [keyword, setKeyword] = React.useState("");
+        const onClick = () => setValue((prev) => prev+1);
+        const onChange = (event) =>{
+            setKeyword(event.target.value);
+        }
+
+        React.useEffect(() => {
+            alert(keyword);
+        }, [keyword])
+
+        return(
+            <div>
+                <input type="text" placeholder="Search here" onChange={onChange}/>
+                <h3>Counted: {value}</h3>
+                <button onClick={onClick}>Count</button>
+            </div>
+        )
+    }
+    ReactDOM.render(<App />, root);
+  </script>
+</html>

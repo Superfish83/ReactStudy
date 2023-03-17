@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const root = document.getElementById("root");
+    function Btn({banana, big, changeValue}){
+      return <button 
+        onClick={changeValue}
+        style={{
+        backgroundColor: "tomato",
+        color:"white",
+        padding:"10px 20px",
+        border:0,
+        borderRadius:10,
+        fontSize: big ? 24 : 16,
+      }}>{banana}</button>
+    }
+
+    Btn.propTypes={
+      banana: PropTypes.string,
+      big:PropTypes.number,
+    }
+
+    function App(){
+      const [value, setValue] = React.useState("Save Changes");
+      const changeValue = () => { setValue("Revert Changes") };
+      return <div>
+        <Btn banana={value} big={true} changeValue={changeValue}/>
+        <Btn banana="Confirm"/>
+        </div>;
+    };
+
+
+    ReactDOM.render(<App />, root);
+  </script>
+</html>

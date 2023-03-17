@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    function Hello(){
+        React.useEffect(() => {
+                alert("wawa");
+                return () => alert("wa sans");
+            }, []
+        );
+        return <h1>Hello</h1>;
+    }
+    function App(){
+        const [show, setShow] = React.useState(false);
+        const onClick = () => {
+            setShow((prev) => !prev);
+        }
+        return(
+            <div>
+                {show ? <Hello/> : null}
+                <button onClick={onClick}>{show ? "Hide" : "Show"}</button>
+            </div>
+        )
+    }
+    ReactDOM.render(<App />, root);
+  </script>
+</html>
